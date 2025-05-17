@@ -1,5 +1,5 @@
-@import 'mixins';
-@import 'variables';
+@use "variables" as *;
+@use "mixins" as *;
 
 html,
 body,
