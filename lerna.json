@@ -2,14 +2,10 @@
   "$schema": "https://json.schemastore.org/lerna.json",
   "version": "independent",
   "npmClient": "npm",
-  "useWorkspaces": true,
   "stream": true,
-  "ignoreChanges": [
-    "*.md"
-  ],
+  "ignoreChanges": ["*.md"],
+  "packages": ["packages/*"],
   "command": {
-    "run": {
-      "parallel": true
-    }
+    "run": { "parallel": true }
   }
 }
