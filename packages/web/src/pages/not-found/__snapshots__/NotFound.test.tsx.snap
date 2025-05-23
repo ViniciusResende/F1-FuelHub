@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotFound page renders correctly (snapshot) 1`] = `
+<DocumentFragment>
+  <main
+    class="wrapper"
+  >
+    <svg
+      class="illustration"
+      data-testid="illustration"
+    />
+    <h1
+      class="title"
+    >
+      404 – Page Not Found
+    </h1>
+    <p
+      class="text"
+    >
+      Looks like you took a wrong turn in the pit lane.
+    </p>
+    <button
+      class="button-component default"
+    >
+      Back to Home
+    </button>
+  </main>
+</DocumentFragment>
+`;

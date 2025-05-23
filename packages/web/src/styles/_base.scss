@@ -1,0 +1,73 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+html,
+body,
+div#root {
+  @include full-page;
+}
+
+body {
+  background: $backgroundColor;
+  color: $fontColor;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body,
+input,
+button,
+textarea {
+  font: 400 16px 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: $primaryColor;
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $primaryColorHover;
+  }
+}
+
+ul,
+ol {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    display: block;
+  }
+}
+
+*::-webkit-scrollbar {
+  background-color: transparent;
+  height: 16px;
+  width: 16px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-clip: content-box;
+  border: 4px solid transparent;
+  border-radius: 1ex;
+  background-color: rgba(16, 26, 49, 0.3);
+}
+
+*::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+* {
+  scrollbar-color: rgba(0, 0, 0, 0.1) transparent;
+}
