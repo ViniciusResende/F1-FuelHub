@@ -11,11 +11,3 @@ export interface OpenF1Driver {
   meeting_key?: number;
   session_key?: number;
 }
-
-export interface DriverDTO {
-  number: number;
-  name: string;
-  country: string;
-  team: string | null;
-  headshot: string | null;
-}
