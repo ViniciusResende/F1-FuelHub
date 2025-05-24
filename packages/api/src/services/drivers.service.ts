@@ -4,6 +4,27 @@ import { dedupeBy } from '../utils/array';
 
 /**
  */
+export async function getDriverByNumber(
+  driverNumber: number,
+): Promise<DriverDTO | null> {
+  const params = { driver_number: driverNumber, session_key: 'latest' };
+
+  const list: OpenF1Driver[] = await openf1.get('/drivers', params);
+  const driver = list[0];
+
+  if (!driver) return null;
+
+  return {
+    number: driver.driver_number,
+    name: driver.full_name || driver.driver_name,
+    country: driver.country_code,
+    team: driver.team_name,
+    headshot: driver.headshot_url,
+  };
+}
+
+/**
+ */
 export async function listActiveDrivers(): Promise<DriverDTO[]> {
   const raw: OpenF1Driver[] = await openf1.get<OpenF1Driver[]>('/drivers', {
     session_key: 'latest',
