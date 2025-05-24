@@ -6,14 +6,13 @@ export async function topSpeedLatestRace(): Promise<TopSpeedDTO | null> {
   const currYear = new Date().getUTCFullYear();
   const sessions: SessionRaw[] = await openf1.get('/sessions', {
     year: currYear,
+    session_type: 'Race',
   });
 
-  const latestRace = sessions
-    .filter((s) => s.session_type === 'Race')
-    .sort(
-      (a, b) =>
-        new Date(b.date_start).getTime() - new Date(a.date_start).getTime(),
-    )[0];
+  const latestRace = sessions.sort(
+    (a, b) =>
+      new Date(b.date_start).getTime() - new Date(a.date_start).getTime(),
+  )[0];
 
   if (!latestRace) return null;
 
