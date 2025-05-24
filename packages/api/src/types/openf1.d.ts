@@ -11,3 +11,20 @@ export interface OpenF1Driver {
   meeting_key?: number;
   session_key?: number;
 }
+
+export interface RawPit {
+  date: string;
+  pit_duration: number;
+  driver_number: number;
+}
+
+export interface SessionRaw {
+  session_key: number;
+  session_type: 'Race' | string;
+  date_start: string;
+}
+
+export interface LapRaw {
+  driver_number: number;
+  st_speed: number | null;
+}

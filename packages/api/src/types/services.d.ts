@@ -13,15 +13,18 @@ export interface PodiumDriver extends DriverDTO {
   total: number;
 }
 
-export interface RawPit {
-  date: string;
-  pit_duration: number;
-  driver_number: number;
-}
-
 export interface PitstopDTO {
   year: number;
   time: number;
+  driver: string;
+  team: string | null;
+  number: number;
+}
+
+export interface TopSpeedDTO {
+  year: number;
+  sessionKey: number;
+  speed: number;
   driver: string;
   team: string | null;
   number: number;
