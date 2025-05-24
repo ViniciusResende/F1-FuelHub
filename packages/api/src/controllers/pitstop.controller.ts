@@ -1,14 +1,14 @@
 import { Request, Response, NextFunction } from 'express';
-import { topPoleDrivers } from '../services/pole.service';
+import { fastestPitstops } from '../services/pitstop.service';
 
-export async function getTopPoles(
+export async function getFastestPitstops(
   _req: Request,
   res: Response,
   next: NextFunction,
 ) {
   try {
-    const result = await topPoleDrivers();
-    res.json(result);
+    const data = await fastestPitstops();
+    res.json(data);
   } catch (err) {
     next(err);
   }
