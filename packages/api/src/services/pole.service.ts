@@ -11,17 +11,15 @@ interface PodiumCount {
 
 function countPodiums(rows: { position: number; date: string }[]): PodiumCount {
   const count = { first: 0, second: 0, third: 0 };
-  rows.forEach((r) => {
-    if (r.position === 1) count.first += 1;
-    else if (r.position === 2) count.second += 1;
-    else if (r.position === 3) count.third += 1;
+  rows.forEach((row) => {
+    if (row.position === 1) count.first += 1;
+    else if (row.position === 2) count.second += 1;
+    else if (row.position === 3) count.third += 1;
   });
   return { ...count, total: count.first + count.second + count.third };
 }
 
-export async function topPoleDrivers(
-  year: number,
-): Promise<Array<PodiumDriver>> {
+export async function topPoleDrivers(): Promise<Array<PodiumDriver>> {
   const uniqueDrivers = await listActiveDrivers();
 
   const podiumPromises = uniqueDrivers.map(async (d) => {
@@ -29,9 +27,11 @@ export async function topPoleDrivers(
       `/position?driver_number=${d.number}&position<=3`,
     );
 
+    const currYear = new Date().getUTCFullYear();
+
     /* filter rows to the target season */
     const seasonRows = rows.filter(
-      (r) => new Date(r.date).getUTCFullYear() === year,
+      (r) => new Date(r.date).getUTCFullYear() === currYear,
     );
 
     //TODO: This could account only for actual grands prix
