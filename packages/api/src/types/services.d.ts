@@ -29,3 +29,8 @@ export interface TopSpeedDTO {
   team: string | null;
   number: number;
 }
+
+export interface VictoryDTO extends DriverDTO {
+  country: string;
+  wins: number;
+}

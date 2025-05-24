@@ -28,3 +28,9 @@ export interface LapRaw {
   driver_number: number;
   st_speed: number | null;
 }
+
+interface PositionRaw {
+  date: string;
+  position: number;
+  driver_number: number;
+}
