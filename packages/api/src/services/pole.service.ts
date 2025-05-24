@@ -1,6 +1,6 @@
 import { openf1 } from './openf1.service';
 import { listActiveDrivers } from './drivers.service';
-import { PodiumDriver } from '../types';
+import { PodiumDriver, PositionRaw } from '../types';
 
 interface PodiumCount {
   first: number;
@@ -23,7 +23,7 @@ export async function topPoleDrivers(): Promise<Array<PodiumDriver>> {
   const uniqueDrivers = await listActiveDrivers();
 
   const podiumPromises = uniqueDrivers.map(async (d) => {
-    const rows: { position: number; date: string }[] = await openf1.get(
+    const rows: PositionRaw[] = await openf1.get(
       `/position?driver_number=${d.number}&position<=3`,
     );
 
