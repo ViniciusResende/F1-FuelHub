@@ -11,6 +11,7 @@ import {
   PitstopDTO,
   TopSpeedDTO,
   VictoryDTO,
+  TeamVoteDTO,
 } from './services';
 
 export {
@@ -24,4 +25,5 @@ export {
   TopSpeedDTO,
   PositionRaw,
   VictoryDTO,
+  TeamVoteDTO,
 };
