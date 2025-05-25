@@ -11,7 +11,8 @@
     "dev": "lerna run dev",
     "test": "lerna run test --stream",
     "dev:api": "npm --workspace packages/api run dev",
-    "dev:web": "npm --workspace packages/web run dev"
+    "dev:web": "npm --workspace packages/web run dev",
+    "dev:db": "docker compose -f mongo-db-docker-compose.yml up -d db"
   },
   "devDependencies": {
     "eslint": "^9.25.1",

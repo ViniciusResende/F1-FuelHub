@@ -34,3 +34,8 @@ export interface VictoryDTO extends DriverDTO {
   country: string;
   wins: number;
 }
+
+export interface TeamVoteDTO {
+  team: string;
+  votes: number;
+}
