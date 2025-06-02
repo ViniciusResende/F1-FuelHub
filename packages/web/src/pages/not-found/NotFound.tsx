@@ -2,7 +2,7 @@
 import { useRouter } from 'next/router';
 
 /** Components */
-import Button from '../../components/Button';
+import Button from '../../components/Common/Button';
 
 /** Assets */
 import { CarRepairIllustration } from '../../assets/svg/illustrations';

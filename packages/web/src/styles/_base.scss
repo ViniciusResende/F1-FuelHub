@@ -1,5 +1,5 @@
-@use "variables" as *;
-@use "mixins" as *;
+@use 'variables' as *;
+@use 'mixins' as *;
 
 html,
 body,
@@ -10,16 +10,34 @@ div#root {
 body {
   background: $backgroundColor;
   color: $fontColor;
-  overflow: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@font-face {
+  font-family: 'F1';
+  src: url('../../public/fonts/f1/F1Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'F1';
+  src: url('../../public/fonts/f1/F1Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'F1';
+  src: url('../../public/fonts/f1/F1Wide.ttf') format('truetype');
+  font-weight: 600;
+  font-display: swap;
 }
 
 body,
 input,
 button,
 textarea {
-  font: 400 16px 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+  font: 400 16px 'F1', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
 }
