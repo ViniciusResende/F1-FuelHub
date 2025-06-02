@@ -26,6 +26,7 @@ interface F1TeamCardProps {
   description?: string;
   Overlay?: ReactElement;
   placement?: placementType;
+  teamImageWidth?: number;
 }
 
 const TeamMedalIconMap = new Map<placementType, ReactElement>([
@@ -40,6 +41,7 @@ export default function F1TeamCard({
   description,
   Overlay,
   placement,
+  teamImageWidth = 200,
 }: F1TeamCardProps) {
   return (
     <section className='f1-team-card'>
@@ -56,7 +58,7 @@ export default function F1TeamCard({
           </div>
         </main>
         <footer>
-          <F1TeamImage team={team} width={250} />
+          <F1TeamImage team={team} width={teamImageWidth} />
           <strong>{TeamEnumToTeamNameMap.get(team)}</strong>
         </footer>
       </div>

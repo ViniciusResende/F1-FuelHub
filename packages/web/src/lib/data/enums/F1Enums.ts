@@ -30,7 +30,7 @@ export enum F1Pilot {
   Bearman = 'bearman',
   Ocon = 'ocon',
   /** Kick Sauber */
-  Bartoleto = 'bartoleto',
+  Bortoleto = 'bortoleto',
   Hulkenberg = 'hulkenberg',
   /** McLaren */
   Norris = 'norris',
