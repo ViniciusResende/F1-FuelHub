@@ -7,6 +7,8 @@ import { F1Team, F1Pilot } from '@/lib/data/enums/F1Enums';
 /** Components */
 import F1TeamCard from '@/components/F1TeamCard';
 import F1TeamPilotImage from '@/components/F1TeamPilotImage';
+import Footer from '@/components/Footer';
+import Header from '@/components/Header';
 
 /** Styles */
 import './Home.scss';
@@ -174,121 +176,126 @@ function Home() {
   }, []);
 
   return (
-    <main className="home">
+    <div className="home-wrapper">
+      <Header isVisible={scrollProgress > 0} />
       <div className="background-wrapper">
         <div className="overlay" />
       </div>
       
-      <section className="landing-section">
-        <div className="content-wrapper">
-          <h1 className="title">Welcome to F1 FuelHub</h1>
-          <h2 className="subtitle">Your ultimate Formula 1 resource center</h2>
-        </div>
-        
-        <button 
-          className="scroll-button" 
-          onClick={handleScrollOnClick}
-          style={{ visibility: scrollProgress >= 1 ? 'hidden' : 'visible' }}
-        >
-          <div className="circle">
-            <FaChevronDown />
+      <main className="home">
+        <section className="landing-section">
+          <div className="content-wrapper">
+            <h1 className="title">Welcome to F1 FuelHub</h1>
+            <h2 className="subtitle">Your ultimate Formula 1 resource center</h2>
           </div>
-        </button>
-      </section>
-
-      <div className="main-content" ref={mainRef}>
-        <section className="section most-voted-section">
-          <h2 className="section-title">
-            <FaTrophy style={{ marginRight: '0.5rem', color: '#FFD700' }} />
-            Most Voted Team
-          </h2>
           
-          <div className="votes-info">
-            <div className="votes-count">1,234</div>
-            <div className="votes-label">Total Votes</div>
-          </div>
-
-          <div className="team-card-wrapper">
-            <F1TeamCard
-              team={F1Team.RedBull}
-              title='Red Bull Racing'
-              description='Red Bull Racing, the current dominant force in Formula 1, known for their aerodynamic excellence and strategic mastery.'
-              placement='first'
-            />
-          </div>
+          <button 
+            className="scroll-button" 
+            onClick={handleScrollOnClick}
+            style={{ visibility: scrollProgress >= 1 ? 'hidden' : 'visible' }}
+          >
+            <div className="circle">
+              <FaChevronDown />
+            </div>
+          </button>
         </section>
 
-        <section className="section top-drivers-section">
-          <h2 className="section-title">
-            <FaFlag style={{ marginRight: '0.5rem', color: '#FFD700' }} />
-            Top Pole Position Drivers
-          </h2>
+        <div className="main-content" ref={mainRef}>
+          <section className="section most-voted-section">
+            <h2 className="section-title">
+              <FaTrophy style={{ marginRight: '0.5rem', color: '#FFD700' }} />
+              Most Voted Team
+            </h2>
+            
+            <div className="votes-info">
+              <div className="votes-count">1,234</div>
+              <div className="votes-label">Total Votes</div>
+            </div>
 
-          <div className="drivers-container">
-            {TOP_DRIVERS.map((driver, index) => (
-              <div key={driver.pilot} className={`driver-card ${['first', 'second', 'third'][index]}`}>
+            <div className="team-card-wrapper">
+              <F1TeamCard
+                team={F1Team.RedBull}
+                title='Red Bull Racing'
+                description='Red Bull Racing, the current dominant force in Formula 1, known for their aerodynamic excellence and strategic mastery.'
+                placement='first'
+              />
+            </div>
+          </section>
+
+          <section className="section top-drivers-section">
+            <h2 className="section-title">
+              <FaFlag style={{ marginRight: '0.5rem', color: '#FFD700' }} />
+              Top Pole Position Drivers
+            </h2>
+
+            <div className="drivers-container">
+              {TOP_DRIVERS.map((driver, index) => (
+                <div key={driver.pilot} className={`driver-card ${['first', 'second', 'third'][index]}`}>
+                  <F1TeamCard
+                    team={driver.team}
+                    title={getPilotName(driver.pilot)}
+                    placement={['first', 'second', 'third'][index] as any}
+                    Overlay={<PilotStatsOverlay pilot={driver.pilot} positions={driver.positions} />}
+                    teamImageWidth={150}
+                  />
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section className="section fastest-pitstops-section">
+            <h2 className="section-title">
+              <FaClock style={{ marginRight: '0.5rem', color: '#FFD700' }} />
+              Fastest Pit Stops
+            </h2>
+
+            <div className="pitstops-container">
+              <div className="pitstop-card current-year">
+                <h3>Fastest Pit Stop {FASTEST_PITSTOPS.currentYear.year}</h3>
                 <F1TeamCard
-                  team={driver.team}
-                  title={getPilotName(driver.pilot)}
-                  placement={['first', 'second', 'third'][index] as any}
-                  Overlay={<PilotStatsOverlay pilot={driver.pilot} positions={driver.positions} />}
-                  teamImageWidth={150}
+                  team={FASTEST_PITSTOPS.currentYear.team}
+                  title={`${FASTEST_PITSTOPS.currentYear.time.toFixed(2)}s`}
+                  description={`${FASTEST_PITSTOPS.currentYear.team} set the fastest pit stop of ${FASTEST_PITSTOPS.currentYear.year} with an incredible time of ${FASTEST_PITSTOPS.currentYear.time.toFixed(2)} seconds.`}
+                  placement="first"
+                  teamImageWidth={170}
                 />
               </div>
-            ))}
-          </div>
-        </section>
 
-        <section className="section fastest-pitstops-section">
-          <h2 className="section-title">
-            <FaClock style={{ marginRight: '0.5rem', color: '#FFD700' }} />
-            Fastest Pit Stops
-          </h2>
+              <div className="pitstop-card all-time">
+                <h3>All-Time Record</h3>
+                <F1TeamCard
+                  team={FASTEST_PITSTOPS.allTime.team}
+                  title={`${FASTEST_PITSTOPS.allTime.time.toFixed(2)}s`}
+                  description={`${FASTEST_PITSTOPS.allTime.team} holds the all-time record with an astonishing ${FASTEST_PITSTOPS.allTime.time.toFixed(2)} seconds pit stop in ${FASTEST_PITSTOPS.allTime.year}.`}
+                  placement="first"
+                  teamImageWidth={170}
+                />
+              </div>
+            </div>
+          </section>
 
-          <div className="pitstops-container">
-            <div className="pitstop-card current-year">
-              <h3>Fastest Pit Stop {FASTEST_PITSTOPS.currentYear.year}</h3>
+          <section className="section top-speed-section">
+            <h2 className="section-title">
+              <FaBolt style={{ marginRight: '0.5rem', color: '#FFD700' }} />
+              Top Speed Record
+            </h2>
+
+            <div className="speed-card">
+              <h3>Fastest Speed {TOP_SPEED.year}</h3>
               <F1TeamCard
-                team={FASTEST_PITSTOPS.currentYear.team}
-                title={`${FASTEST_PITSTOPS.currentYear.time.toFixed(2)}s`}
-                description={`${FASTEST_PITSTOPS.currentYear.team} set the fastest pit stop of ${FASTEST_PITSTOPS.currentYear.year} with an incredible time of ${FASTEST_PITSTOPS.currentYear.time.toFixed(2)} seconds.`}
+                team={TOP_SPEED.team}
+                title={`${TOP_SPEED.speed.toFixed(1)} km/h`}
+                description={`${getPilotName(TOP_SPEED.pilot)} achieved an incredible top speed of ${TOP_SPEED.speed.toFixed(1)} km/h driving for ${TOP_SPEED.team} in ${TOP_SPEED.year}.`}
                 placement="first"
                 teamImageWidth={170}
               />
             </div>
+          </section>
+        </div>
 
-            <div className="pitstop-card all-time">
-              <h3>All-Time Record</h3>
-              <F1TeamCard
-                team={FASTEST_PITSTOPS.allTime.team}
-                title={`${FASTEST_PITSTOPS.allTime.time.toFixed(2)}s`}
-                description={`${FASTEST_PITSTOPS.allTime.team} holds the all-time record with an astonishing ${FASTEST_PITSTOPS.allTime.time.toFixed(2)} seconds pit stop in ${FASTEST_PITSTOPS.allTime.year}.`}
-                placement="first"
-                teamImageWidth={170}
-              />
-            </div>
-          </div>
-        </section>
-
-        <section className="section top-speed-section">
-          <h2 className="section-title">
-            <FaBolt style={{ marginRight: '0.5rem', color: '#FFD700' }} />
-            Top Speed Record
-          </h2>
-
-          <div className="speed-card">
-            <h3>Fastest Speed {TOP_SPEED.year}</h3>
-            <F1TeamCard
-              team={TOP_SPEED.team}
-              title={`${TOP_SPEED.speed.toFixed(1)} km/h`}
-              description={`${getPilotName(TOP_SPEED.pilot)} achieved an incredible top speed of ${TOP_SPEED.speed.toFixed(1)} km/h driving for ${TOP_SPEED.team} in ${TOP_SPEED.year}.`}
-              placement="first"
-              teamImageWidth={170}
-            />
-          </div>
-        </section>
-      </div>
-    </main>
+        <Footer />
+      </main>
+    </div>
   );
 }
 
