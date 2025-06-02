@@ -3,7 +3,7 @@ $lightGray: #e2e2e2;
 $white: #fff;
 $black: #000;
 $primaryColor: #e00400;
-$primaryColorHover: #E40B0B;
+$primaryColorHover: #e40b0b;
 $secondaryColor: #38383f;
 $fontColor: #eeecec;
 $supportLight: #dbdcdd;
@@ -21,3 +21,6 @@ $mq-large: 'screen and (min-width: 1280px)';
 $mq-medium: 'screen and (max-width: 1278px)';
 $mq-small: 'screen and (max-width: 1024px)';
 $mq-xsmall: 'screen and (max-width: 480px)';
+
+/** Values */
+$borderRadius: 0.75rem;
