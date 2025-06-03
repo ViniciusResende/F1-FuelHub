@@ -14,6 +14,10 @@ const customConfig = {
     // Alias paths, if you use "@/..." in tsconfig
     '^@/(.*)$': '<rootDir>/src/$1',
   },
+
+  globals: {
+    fetch: global.fetch,
+  },
 };
 
 module.exports = createJestConfig(customConfig);
