@@ -56,7 +56,7 @@
   }
 
   &.disabled {
-    background-color: lighten($fontColor, 15%);
+    background-color: lighten($textDisabled, 15%);
     cursor: default;
     pointer-events: none;
 
