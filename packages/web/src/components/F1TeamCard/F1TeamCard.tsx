@@ -52,9 +52,11 @@ export default function F1TeamCard({
           <h3>{title}</h3>
           {description && <p>{description}</p>}
           {Overlay && Overlay}
-          <div className='f1-team-card__badge'>
-            {placement && TeamMedalIconMap.get(placement)}
-          </div>
+          {placement && (
+            <div className='f1-team-card__badge'>
+              {TeamMedalIconMap.get(placement)}
+            </div>
+          )}
         </main>
         <footer>
           <F1TeamImage team={team} width={teamImageWidth} />
