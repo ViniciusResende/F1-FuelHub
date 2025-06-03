@@ -15,9 +15,9 @@ const customConfig = {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
 
-  globals: {
-    fetch: global.fetch,
-  },
+  verbose: true,
+  collectCoverage: true,
+  coverageDirectory: 'coverage',
 };
 
 module.exports = createJestConfig(customConfig);
