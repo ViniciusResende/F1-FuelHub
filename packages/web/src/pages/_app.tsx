@@ -3,6 +3,9 @@ import Head from 'next/head';
 import { Roboto } from 'next/font/google';
 import '@/styles/index.scss';
 
+/** Library */
+import Lib from '@/lib';
+
 const roboto = Roboto({
   variable: '--font-roboto',
   subsets: ['latin'],
@@ -12,6 +15,10 @@ const roboto = Roboto({
 });
 
 export default function MyApp({ Component, pageProps }: AppProps) {
+  Lib.utils.setConfiguration({
+    baseApiUrl: 'http://localhost:4000',
+  });
+
   return (
     <>
       <Head>

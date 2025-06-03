@@ -17,6 +17,13 @@ export interface IClass<T> {
  * General configuration for the library.
  */
 export interface ILibConfiguration {
+  baseApiUrl?: string;
+}
+
+/**
+ * General configuration for the library.
+ */
+export interface ILibConfiguration {
   apiConfigObject?: unknown;
   notificationService?: LibNotificationTypeEnum;
 }
