@@ -1,16 +1,16 @@
 import { F1Pilot, F1Team, F1Country } from '../enums/F1Enums';
 
 const TeamEnumToTeamNameMap = new Map<F1Team, string>([
-  [F1Team.Alpine, 'BWT Alpine Formula One Team'],
-  [F1Team.AstonMartin, 'Aston Martin Aramco Formula One Team'],
-  [F1Team.Ferrari, 'Scuderia Ferrari HP'],
-  [F1Team.Haas, 'MoneyGram Haas F1 Team'],
-  [F1Team.KickSauber, 'Stake F1 Team Kick Sauber'],
-  [F1Team.McLaren, 'McLaren Formula 1 Team'],
-  [F1Team.Mercedes, 'Mercedes-AMG PETRONAS Formula One Team'],
-  [F1Team.RacingBulls, 'Visa Cash App Racing Bulls Formula One Team'],
-  [F1Team.RedBull, 'Oracle Red Bull Racing'],
-  [F1Team.Williams, 'Atlassian Williams Racing'],
+  [F1Team.Alpine, 'Alpine F1 Team'],
+  [F1Team.AstonMartin, 'Aston Martin F1 Team'],
+  [F1Team.Ferrari, 'Scuderia Ferrari'],
+  [F1Team.Haas, 'Haas F1 Team'],
+  [F1Team.KickSauber, 'Kick Sauber F1 Team'],
+  [F1Team.McLaren, 'McLaren F1 Team'],
+  [F1Team.Mercedes, 'Mercedes F1 Team'],
+  [F1Team.RacingBulls, 'Racing Bulls F1 Team'],
+  [F1Team.RedBull, 'Red Bull Racing'],
+  [F1Team.Williams, 'Williams Racing'],
 ]);
 
 const ApiTeamNameToTeamEnumMap = new Map<string, F1Team>([
@@ -24,6 +24,19 @@ const ApiTeamNameToTeamEnumMap = new Map<string, F1Team>([
   ['Racing Bulls', F1Team.RacingBulls],
   ['Red Bull Racing', F1Team.RedBull],
   ['Williams', F1Team.Williams],
+]);
+
+const TeamEnumToApiTeamNameMap = new Map<F1Team, string>([
+  [F1Team.Alpine, 'Alpine'],
+  [F1Team.AstonMartin, 'Aston Martin'],
+  [F1Team.Ferrari, 'Ferrari'],
+  [F1Team.Haas, 'Haas F1 Team'],
+  [F1Team.KickSauber, 'Kick Sauber'],
+  [F1Team.McLaren, 'McLaren'],
+  [F1Team.Mercedes, 'Mercedes'],
+  [F1Team.RacingBulls, 'Racing Bulls'],
+  [F1Team.RedBull, 'Red Bull Racing'],
+  [F1Team.Williams, 'Williams'],
 ]);
 
 const ApiDriverNameToDriverEnumMap = new Map<string, F1Pilot>([
@@ -97,4 +110,5 @@ export {
   ApiTeamNameToTeamEnumMap,
   DriverEnumToCountryMap,
   TeamEnumToTeamNameMap,
+  TeamEnumToApiTeamNameMap,
 };
