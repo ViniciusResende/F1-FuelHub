@@ -15,6 +15,7 @@ import F1TeamCard from '@/components/F1TeamCard';
 import F1TeamPilotImage from '@/components/F1TeamPilotImage';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
+import Loader from '@/components/Common/Loader';
 
 /** Styles */
 import './Home.scss';
@@ -146,7 +147,7 @@ function Home() {
   }, []);
 
   if (isLoading) {
-    return <div className='loading'>Loading...</div>;
+    return <Loader />;
   }
 
   if (!homeData) {
