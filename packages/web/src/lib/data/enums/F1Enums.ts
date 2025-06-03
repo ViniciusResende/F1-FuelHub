@@ -36,7 +36,7 @@ export enum F1Pilot {
   Norris = 'norris',
   Piastri = 'piastri',
   /** Mercedes */
-  Antonelli = 'antontelli',
+  Antonelli = 'antonelli',
   Russell = 'russell',
   /** Racing Bulls */
   Hadjar = 'hadjar',
@@ -47,4 +47,22 @@ export enum F1Pilot {
   /** Williams */
   Albon = 'albon',
   Sainz = 'sainz',
+}
+
+export enum F1Country {
+  Argentina = 'Argentina',
+  Australia = 'Australia',
+  Brazil = 'Brazil',
+  Canada = 'Canada',
+  Italy = 'Italy',
+  France = 'France',
+  Japan = 'Japan',
+  Monaco = 'Monaco',
+  NewZealand = 'NewZealand',
+  Netherlands = 'Netherlands',
+  Thailand = 'Thailand',
+  Germany = 'Germany',
+  Spain = 'Spain',
+  UnitedStates = 'UnitedStates',
+  UnitedKingdom = 'UnitedKingdom',
 }

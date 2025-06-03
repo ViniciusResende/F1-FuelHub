@@ -1,4 +1,4 @@
-import { F1Pilot, F1Team } from '../enums/F1Enums';
+import { F1Pilot, F1Team, F1Country } from '../enums/F1Enums';
 
 const TeamEnumToTeamNameMap = new Map<F1Team, string>([
   [F1Team.Alpine, 'BWT Alpine Formula One Team'],
@@ -37,7 +37,7 @@ const ApiDriverNameToDriverEnumMap = new Map<string, F1Pilot>([
   ['Lewis HAMILTON', F1Pilot.Hamilton],
   ['Charles LECLERC', F1Pilot.Leclerc],
   /** Haas */
-  ['Nick BEARMAN', F1Pilot.Bearman],
+  ['Oliver BEARMAN', F1Pilot.Bearman],
   ['Esteban OCON', F1Pilot.Ocon],
   /** Kick Sauber */
   ['Gabriel BORTOLETO', F1Pilot.Bortoleto],
@@ -59,8 +59,42 @@ const ApiDriverNameToDriverEnumMap = new Map<string, F1Pilot>([
   ['Carlos SAINZ', F1Pilot.Sainz],
 ]);
 
+const DriverEnumToCountryMap = new Map<F1Pilot, F1Country>([
+  /** Alpine */
+  [F1Pilot.Colapinto, F1Country.Argentina],
+  [F1Pilot.Gasly, F1Country.France],
+  /** Aston Martin */
+  [F1Pilot.Alonso, F1Country.Spain],
+  [F1Pilot.Stroll, F1Country.Canada],
+  /** Ferrari */
+  [F1Pilot.Hamilton, F1Country.UnitedKingdom],
+  [F1Pilot.Leclerc, F1Country.Monaco],
+  /** Haas */
+  [F1Pilot.Bearman, F1Country.UnitedKingdom],
+  [F1Pilot.Ocon, F1Country.France],
+  /** Kick Sauber */
+  [F1Pilot.Bortoleto, F1Country.Brazil],
+  [F1Pilot.Hulkenberg, F1Country.Germany],
+  /** McLaren */
+  [F1Pilot.Norris, F1Country.UnitedKingdom],
+  [F1Pilot.Piastri, F1Country.Australia],
+  /** Mercedes */
+  [F1Pilot.Antonelli, F1Country.Italy],
+  [F1Pilot.Russell, F1Country.UnitedKingdom],
+  /** Racing Bulls */
+  [F1Pilot.Hadjar, F1Country.France],
+  [F1Pilot.Lawson, F1Country.NewZealand],
+  /** Red Bull */
+  [F1Pilot.Tsunoda, F1Country.Japan],
+  [F1Pilot.Verstappen, F1Country.Netherlands],
+  /** Williams */
+  [F1Pilot.Albon, F1Country.Thailand],
+  [F1Pilot.Sainz, F1Country.Spain],
+]);
+
 export {
   ApiDriverNameToDriverEnumMap,
   ApiTeamNameToTeamEnumMap,
+  DriverEnumToCountryMap,
   TeamEnumToTeamNameMap,
 };

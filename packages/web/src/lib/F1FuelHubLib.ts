@@ -7,7 +7,8 @@
  */
 
 /** Services */
-import { HomeService } from './services/Home/HomeService';
+import { HomeService } from './services/Home';
+import { DriversService } from './services/Drivers';
 
 /** Utilities */
 import { Utilities, UtilitiesClass } from './utils/Utilities';
@@ -18,10 +19,12 @@ import { Utilities, UtilitiesClass } from './utils/Utilities';
  */
 export class F1FuelHubLib {
   home: HomeService;
+  drivers: DriversService;
   utils: UtilitiesClass;
 
   constructor() {
     this.home = new HomeService();
+    this.drivers = new DriversService();
     this.utils = Utilities;
   }
 }
