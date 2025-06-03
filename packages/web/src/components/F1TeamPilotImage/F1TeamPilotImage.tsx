@@ -1,7 +1,7 @@
 import cx from 'classnames';
 
 /** Lib */
-import { F1Team, F1Pilot } from '@/lib/data/enums/F1Enums';
+import { F1Team, F1Pilot } from '@/lib';
 
 /** Components */
 import Image from '../Common/Image';

@@ -1,8 +1,7 @@
 import { ReactElement } from 'react';
 
 /** Lib */
-import { F1Team } from '@/lib/data/enums/F1Enums';
-import { TeamEnumToTeamNameMap } from '@/lib/data/mappers/F1Mappers';
+import { F1Team, TeamEnumToTeamNameMap } from '@/lib';
 
 /** Components */
 import F1TeamImage from '../F1TeamImage';

@@ -1,5 +1,5 @@
-import { ApiClient } from '@/lib/utils/classes/api-client/ApiClient';
-import { IAbortableResponse } from '@/lib/utils/classes/api-client/ApiClientInterfaces';
+import { ApiClient } from '../../../utils/classes/api-client/ApiClient';
+import { IAbortableResponse } from '../../../utils/classes/api-client/ApiClientInterfaces';
 import { ApiEndpoint } from './ApiEndpoint';
 
 interface IApiTestEndpointResponseData {
@@ -9,7 +9,7 @@ interface IApiTestEndpointResponseData {
 class ApiTestEndpoint extends ApiEndpoint<IApiTestEndpointResponseData> {
   responseTransformer(): IAbortableResponse<IApiTestEndpointResponseData> {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    //@ts-ignore 
+    //@ts-ignore
     return;
   }
 }
@@ -41,7 +41,7 @@ describe('ApiEndpoint', () => {
     expect(requestInit.headers).toEqual(
       new Headers({
         'test-header': '123',
-      })
+      }),
     );
   });
 

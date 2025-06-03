@@ -11,13 +11,13 @@ import {
   HttpRequestModeEnum,
   HttpRequestRedirectEnum,
   HttpRequestReferrerPolicyEnum,
-} from '@/lib/utils/classes/api-client/ApiClientEnums';
+} from '../../../utils/classes/api-client/ApiClientEnums';
 
 /** Interfaces */
-import { IApiClientRequestParams } from '@/lib/utils/classes/api-client/ApiClientInterfaces';
+import { IApiClientRequestParams } from '../../../utils/classes/api-client/ApiClientInterfaces';
 
 /** Classes */
-import { ApiClientEndpoint } from '@/lib/utils/classes/api-client/ApiClientEndpoint';
+import { ApiClientEndpoint } from '../../../utils/classes/api-client/ApiClientEndpoint';
 
 /**
  * Abstract API Endpoint class which adds common implementation for the request
@@ -35,15 +35,15 @@ export abstract class ApiEndpoint<R> extends ApiClientEndpoint<R> {
    * @returns - Transformed Request object
    */
   requestBuilder(
-    requestParams: IApiClientRequestParams = {}
+    requestParams: IApiClientRequestParams = {},
   ): [string, RequestInit] {
     const { defaultParams = {} } = this.endpoint;
     const headers = new Headers(
       Object.assign(
         Object.fromEntries(this.apiClient.headers.entries()),
         Object.fromEntries(defaultParams.headers?.entries() || []),
-        Object.fromEntries(requestParams.headers?.entries() || [])
-      )
+        Object.fromEntries(requestParams.headers?.entries() || []),
+      ),
     );
 
     const requestInit: RequestInit = {

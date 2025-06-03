@@ -8,10 +8,10 @@ import {
   HttpContentTypeEnum,
   HttpMethodEnum,
   HttpRequestHeaderEnum,
-} from '@/lib/utils/classes/api-client/ApiClientEnums';
+} from '../../../utils/classes/api-client/ApiClientEnums';
 
 /** Interfaces */
-import { IApiClientRequestParams } from '@/lib/utils/classes/api-client/ApiClientInterfaces';
+import { IApiClientRequestParams } from '../../../utils/classes/api-client/ApiClientInterfaces';
 import {
   IF1FuelHubTopSpeedResponse,
   IF1FuelHubFastestPitstopsResponse,
@@ -23,7 +23,7 @@ import {
 } from './F1FuelHubInterfaces';
 
 /** Classes */
-import { ApiClient } from '@/lib/utils/classes/api-client/ApiClient';
+import { ApiClient } from '../../../utils/classes/api-client/ApiClient';
 import { F1FuelHubEndpoint } from './F1FuelHubEndpoint';
 
 /**

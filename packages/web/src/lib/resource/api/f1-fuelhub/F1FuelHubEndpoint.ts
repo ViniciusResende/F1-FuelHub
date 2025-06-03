@@ -4,7 +4,7 @@
  */
 
 /** Interfaces */
-import { IAbortableResponse } from '@/lib/utils/classes/api-client/ApiClientInterfaces';
+import { IAbortableResponse } from '../../../utils/classes/api-client/ApiClientInterfaces';
 import { IF1FuelHubResponseData } from './F1FuelHubInterfaces';
 
 /** Classes */
@@ -22,7 +22,7 @@ export class F1FuelHubEndpoint extends ApiEndpoint<IF1FuelHubResponseData> {
    * @returns - Parsed response data from the API response
    */
   responseTransformer(
-    response: IAbortableResponse<Response>
+    response: IAbortableResponse<Response>,
   ): IAbortableResponse<IF1FuelHubResponseData> {
     const promise = new Promise<IF1FuelHubResponseData>((resolve, reject) => {
       response.promise.then((response) => {
@@ -41,4 +41,4 @@ export class F1FuelHubEndpoint extends ApiEndpoint<IF1FuelHubResponseData> {
     };
     return transformedResponse;
   }
-} 
+}
