@@ -8,7 +8,7 @@ export async function getFastestPitstops(
 ) {
   try {
     const data = await fastestPitstops();
-    res.json(data);
+    res.json({ data });
   } catch (err) {
     next(err);
   }

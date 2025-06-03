@@ -8,7 +8,7 @@ export async function getTopPoles(
 ) {
   try {
     const result = await topPoleDrivers();
-    res.json(result);
+    res.json({ data: result });
   } catch (err) {
     next(err);
   }
