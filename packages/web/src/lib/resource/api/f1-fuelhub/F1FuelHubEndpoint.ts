@@ -26,6 +26,11 @@ export class F1FuelHubEndpoint extends ApiEndpoint<IF1FuelHubResponseData> {
   ): IAbortableResponse<IF1FuelHubResponseData> {
     const promise = new Promise<IF1FuelHubResponseData>((resolve, reject) => {
       response.promise.then((response) => {
+        if (response.status === 204) {
+          resolve({} as IF1FuelHubResponseData);
+          return;
+        }
+
         const jsonParsingPromise = response.json();
         jsonParsingPromise
           .then((data: IF1FuelHubResponseData) => {
