@@ -12,7 +12,7 @@ export async function getTopSpeedLatest(
     if (!result)
       throw new HttpError(404, 'No race data found for current year');
 
-    res.json(result);
+    res.json({ data: result });
   } catch (err) {
     next(err);
   }

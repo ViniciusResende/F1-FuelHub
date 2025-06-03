@@ -16,7 +16,7 @@ export async function getMostVictorious(
     const data = await mostVictoriousDriver(country);
     if (!data) throw new HttpError(404, 'No race data found for that country');
 
-    res.json(data);
+    res.json({ data });
   } catch (err) {
     next(err);
   }

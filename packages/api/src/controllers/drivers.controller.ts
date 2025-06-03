@@ -1,14 +1,14 @@
-import { Request, Response, NextFunction } from "express";
-import { listActiveDrivers } from "../services/drivers.service";
+import { Request, Response, NextFunction } from 'express';
+import { listActiveDrivers } from '../services/drivers.service';
 
 export async function getDrivers(
   _req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) {
   try {
     const drivers = await listActiveDrivers();
-    res.json(drivers);
+    res.json({ data: drivers });
   } catch (err) {
     next(err);
   }

@@ -25,7 +25,7 @@ export async function getLeaderboard(
 ) {
   try {
     const data = await leaderboard();
-    res.json(data);
+    res.json({ data });
   } catch (err) {
     next(err);
   }
