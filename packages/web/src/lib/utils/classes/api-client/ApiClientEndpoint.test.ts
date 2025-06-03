@@ -21,13 +21,13 @@ if (typeof String.prototype.replaceAll === 'undefined') {
 
 class ApiEndpoint extends ApiClientEndpoint<IApiEndpointResponseData> {
   requestBuilder(
-    _requestParams: IApiClientRequestParams = {}
+    _requestParams: IApiClientRequestParams = {},
   ): [string, RequestInit] {
     return [this.apiClient.baseUrl, {}];
   }
 
   responseTransformer(
-    response: IAbortableResponse<Response>
+    response: IAbortableResponse<Response>,
   ): IAbortableResponse<IApiEndpointResponseData> {
     return {
       abort: response.abort,
@@ -59,23 +59,33 @@ describe('ApiClientEndpoint', () => {
   });
 
   it('should be able to request', () => {
+    expect.assertions(2);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
+    global.mockFetch(200, { status: 'ok' });
+
     const fetchSpy = jest.spyOn(apiClient, 'fetch');
     const abortableResponse = apiEndpoint.request('/test');
     expect(fetchSpy).toHaveBeenCalledWith(
       'https://base.url/path/test',
       { signal: expect.any(Object) },
       undefined,
-      undefined
+      undefined,
     );
     expect(abortableResponse).toEqual(
       expect.objectContaining({
         abort: expect.any(Function),
         promise: expect.any(Promise),
-      })
+      }),
     );
   });
 
   it('should be able to request with URL params', () => {
+    expect.assertions(2);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
+    global.mockFetch(200, { status: 'ok' });
+
     const fetchSpy = jest.spyOn(apiClient, 'fetch');
     const abortableResponse = apiEndpoint.request('/test/${id}', {
       urlParams: { id: '123' },
@@ -84,18 +94,27 @@ describe('ApiClientEndpoint', () => {
       'https://base.url/path/test/123',
       { signal: expect.any(Object) },
       undefined,
-      undefined
+      undefined,
     );
     expect(abortableResponse).toEqual(
       expect.objectContaining({
         abort: expect.any(Function),
         promise: expect.any(Promise),
-      })
+      }),
     );
   });
 
   it('should be able to monitor ongoing requests', () => {
+    expect.assertions(3);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
+    global.mockFetch(200, { status: 'ok' });
+
     const responseA = apiEndpoint.request('/resourceA');
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
+    global.mockFetch(200, { status: 'ok' });
     const requestBQueryParams = new URLSearchParams({ id: '123' });
     const responseB = apiEndpoint.request('/resourceB', {
       method: HttpMethodEnum.POST,
@@ -109,7 +128,7 @@ describe('ApiClientEndpoint', () => {
         request: expect.any(Request),
         requestParams: {},
         response: responseA,
-      })
+      }),
     );
     expect(ongoingRequests[1]).toEqual(
       expect.objectContaining({
@@ -120,7 +139,7 @@ describe('ApiClientEndpoint', () => {
           query: requestBQueryParams,
         },
         response: responseB,
-      })
+      }),
     );
   });
 });
