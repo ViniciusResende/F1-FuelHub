@@ -1,0 +1,110 @@
+.teams-wrapper {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  .background-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: url('/assets/images/wallpaper.jpg') no-repeat center center;
+    background-size: cover;
+    z-index: 1;
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+    }
+  }
+
+  .teams {
+    flex: 1;
+    padding: 2rem;
+    color: white;
+    z-index: 2;
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .most-voted-team-section {
+      margin-top: 4rem;
+      margin-bottom: 4rem;
+
+      .most-voted-team-card {
+        max-width: 1200px;
+        margin: 0 auto;
+        transition: transform 0.3s ease;
+
+        &:hover {
+          transform: scale(1.02);
+        }
+
+        .f1-team-card {
+          .f1-team-card__content {
+            & > main > h3 {
+              font-size: 3rem;
+            }
+
+            & > footer > strong {
+              font-size: 2.5rem;
+            }
+          }
+        }
+      }
+    }
+
+    .all-teams-section {
+      .teams-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        padding: 2rem;
+        max-width: 1600px;
+        margin: 0 auto;
+
+        .team-card {
+          transition: transform 0.3s ease;
+          cursor: pointer;
+
+          &:hover {
+            transform: scale(1.02);
+            z-index: 10;
+          }
+
+          &.favorite {
+            .f1-team-card {
+              box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+              border: 2px solid #ffd700;
+              border-radius: 8px;
+            }
+          }
+
+          .f1-team-card {
+            .f1-team-card__content {
+              & > main > h3 {
+                font-size: 2rem;
+              }
+
+              & > footer > strong {
+                font-size: 1.5rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
