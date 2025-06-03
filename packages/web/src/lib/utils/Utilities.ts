@@ -12,6 +12,7 @@ import { IClass, ILibConfiguration } from '../data/interfaces/CommonInterfaces';
 /** Classes */
 import { PubSub } from './classes/pubsub/PubSub';
 import { Logging } from './services/logging/Logging';
+import { LocalStorage } from './classes/local-storage/LocalStorage';
 
 /**
  * Bus to provide access to all utility services.
@@ -22,6 +23,7 @@ class Utilities extends PubSub {
   EVENTS: typeof UtilitiesEvents;
   pubSub: IClass<PubSub>;
   logging: Logging;
+  localStorage: LocalStorage;
 
   constructor() {
     super();
@@ -29,6 +31,7 @@ class Utilities extends PubSub {
     this.EVENTS = UtilitiesEvents;
     this.pubSub = PubSub;
     this.logging = new Logging();
+    this.localStorage = new LocalStorage();
   }
 
   /**
@@ -75,7 +78,7 @@ class Utilities extends PubSub {
       .split('.')
       .reduce(
         (o: unknown, p: string) => (o as ObjectNode)?.[p] ?? defaultValue,
-        object
+        object,
       ) as T;
   }
 }

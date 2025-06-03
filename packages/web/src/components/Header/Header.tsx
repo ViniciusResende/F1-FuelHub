@@ -7,8 +7,8 @@ import './Header.scss';
 const NAVIGATION_ITEMS = [
   { path: '/', label: 'Home' },
   { path: '/drivers', label: 'Drivers' },
-  { path: '/countries', label: 'Countries' },
-  { path: '/teams', label: 'Teams' }
+  // { path: '/countries', label: 'Countries' },
+  { path: '/teams', label: 'Teams' },
 ];
 
 interface HeaderProps {
@@ -20,14 +20,15 @@ function Header({ isVisible = true }: HeaderProps) {
 
   return (
     <header className={`header ${isVisible ? 'visible' : ''}`}>
-      <nav className="navigation">
-        <ul className="navigation-list">
+      <nav className='navigation'>
+        <ul className='navigation-list'>
           {NAVIGATION_ITEMS.map(({ path, label }) => (
-            <li key={path} className="navigation-item">
+            <li key={path} className='navigation-item'>
               <Link
                 href={path}
-                className={`navigation-link ${pathname === path ? 'selected' : ''}`}
-              >
+                className={`navigation-link ${
+                  pathname === path ? 'selected' : ''
+                }`}>
                 {label}
               </Link>
             </li>
@@ -38,4 +39,4 @@ function Header({ isVisible = true }: HeaderProps) {
   );
 }
 
-export default Header; 
+export default Header;
