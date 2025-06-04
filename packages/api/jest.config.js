@@ -18,7 +18,6 @@ module.exports = {
   globals: {
     'ts-jest': {
       compiler: 'typescript',
-      isolatedModules: true,
     },
   },
   verbose: true,
