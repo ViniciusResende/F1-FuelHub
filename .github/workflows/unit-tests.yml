@@ -1,5 +1,8 @@
 name: F1-FuelHub - Unit Tests
 on:
+  push:
+    branches:
+      - master
   pull_request:
     branches:
       - '*'
