@@ -14,6 +14,10 @@ const customConfig = {
     // Alias paths, if you use "@/..." in tsconfig
     '^@/(.*)$': '<rootDir>/src/$1',
   },
+
+  verbose: true,
+  collectCoverage: true,
+  coverageDirectory: 'coverage',
 };
 
 module.exports = createJestConfig(customConfig);

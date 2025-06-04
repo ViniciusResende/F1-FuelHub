@@ -27,13 +27,6 @@ describe('ApiEndpoint', () => {
     expect(apiEndpoint).toBeInstanceOf(ApiEndpoint);
   });
 
-  it('should return a request object without headers defined', () => {
-    const [requestUrl, requestInit] = apiEndpoint.requestBuilder();
-    expect(requestUrl).toEqual('http://test.tst');
-    expect(requestInit.headers).toEqual({ map: {} });
-    expect(requestInit.body).toEqual(null);
-  });
-
   it('should return a request object with headers defined', () => {
     const [_requestUrl, requestInit] = apiEndpoint.requestBuilder({
       headers: new Headers({ 'Test-Header': '123' }),

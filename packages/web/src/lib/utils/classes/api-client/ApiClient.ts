@@ -71,15 +71,14 @@ export class ApiClient {
    * @param fetchReturn - Abortable response to be handled
    * @param timeout - Timeout limit in milliseconds
    */
-  async #handleRequestTimeout(
+  #handleRequestTimeout(
     fetchReturn: IAbortableResponse<Response>,
-    timeout: number
-  ): Promise<void> {
+    timeout: number,
+  ): NodeJS.Timeout {
     const timeoutId = setTimeout(() => {
       fetchReturn.abort(new RequestTimeoutError(timeout));
     }, timeout);
-    await fetchReturn.promise;
-    clearTimeout(timeoutId);
+    return timeoutId;
   }
 
   async #handleHttpError(response: Response): Promise<ApiClientHttpError> {
@@ -101,31 +100,45 @@ export class ApiClient {
     baseUrl: string,
     requestInit: RequestInit,
     query?: URLSearchParams,
-    timeout: number = this.#timeout
+    timeout: number = this.#timeout,
   ): IAbortableResponse<Response> {
     const controller = new AbortController();
-    const { signal } = controller;
-    requestInit.signal = signal;
+    requestInit.signal = controller.signal;
 
     const url = this.#getEndpointUrl(baseUrl, query);
     let rejectPromise: (error: Error) => void;
+    let timerId: NodeJS.Timeout;
+
     const promise: Promise<Response> = new Promise((resolve, reject) => {
       rejectPromise = reject;
+
       fetch(url, requestInit)
         .then(async (response) => {
-          if (response.ok) return resolve(response);
+          if (response.ok) {
+            resolve(response);
+            return;
+          }
           throw await this.#handleHttpError(response);
         })
-        .catch(reject);
+        .catch((error) => {
+          reject(error);
+        })
+        .finally(() => {
+          clearTimeout(timerId);
+        });
     });
+
     const fetchReturn = {
       abort: (error: ApiClientError = new RequestAbortedError()) => {
+        clearTimeout(timerId);
         rejectPromise(error);
         controller.abort();
       },
       promise,
     };
-    this.#handleRequestTimeout(fetchReturn, timeout);
+
+    timerId = this.#handleRequestTimeout(fetchReturn, timeout);
+
     return fetchReturn;
   }
 }
