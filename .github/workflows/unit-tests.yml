@@ -11,7 +11,7 @@ jobs:
   ########################################################
   unit-test:
     name: Run Unit Tests
-    runs-on: [self-hosted, linux, external-k8s]
+    runs-on: ubuntu-latest
     container:
       image: node:22-alpine
     timeout-minutes: 10
