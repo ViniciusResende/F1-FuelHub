@@ -1,0 +1,34 @@
+{
+  "data": [
+    {
+      "name": "Max VERSTAPPEN",
+      "team": "Red Bull Racing",
+      "number": 1,
+      "headshot": "verstappen.png",
+      "first": 10,
+      "second": 5,
+      "third": 2,
+      "total": 17
+    },
+    {
+      "name": "Charles LECLERC",
+      "team": "Ferrari",
+      "number": 16,
+      "headshot": "leclerc.png",
+      "first": 8,
+      "second": 6,
+      "third": 4,
+      "total": 18
+    },
+    {
+      "name": "Lando NORRIS",
+      "team": "McLaren",
+      "number": 4,
+      "headshot": "norris.png",
+      "first": 5,
+      "second": 7,
+      "third": 6,
+      "total": 18
+    }
+  ]
+}
