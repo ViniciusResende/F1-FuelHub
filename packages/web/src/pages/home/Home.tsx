@@ -220,7 +220,12 @@ function Home() {
                   <F1TeamCard
                     team={driver.team}
                     title={driver.driverName}
-                    placement={['first', 'second', 'third'][index] as any}
+                    placement={
+                      ['first', 'second', 'third'][index] as
+                        | 'first'
+                        | 'second'
+                        | 'third'
+                    }
                     Overlay={
                       <PilotStatsOverlay
                         pilot={driver.driver}
