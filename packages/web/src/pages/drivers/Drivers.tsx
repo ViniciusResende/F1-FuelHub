@@ -133,7 +133,7 @@ function Drivers() {
       </div>
 
       <main className='drivers'>
-        <section className='top-drivers-section'>
+        <section className='top-drivers-section' data-cy='top-drivers-section'>
           <h2 className='section-title'>
             <FaFlag style={{ marginRight: '0.5rem', color: '#FFD700' }} />
             Top Pole Position Drivers
@@ -155,11 +155,14 @@ function Drivers() {
           </div>
         </section>
 
-        <section className='all-drivers-section'>
+        <section className='all-drivers-section' data-cy='all-drivers-section'>
           <h2 className='section-title'>All Drivers</h2>
           <div className='drivers-grid'>
             {drivers.map((driver) => (
-              <div key={driver.driverNumber} className='driver-card'>
+              <div
+                key={driver.driverNumber}
+                className='driver-card'
+                data-cy='driver-list-item'>
                 <div className='driver-image-container'>
                   <F1TeamPilotImage
                     pilot={driver.driver}

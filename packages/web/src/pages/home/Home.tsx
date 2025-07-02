@@ -164,14 +164,17 @@ function Home() {
       <main className='home'>
         <section className='landing-section'>
           <div className='content-wrapper'>
-            <h1 className='title'>Welcome to F1 FuelHub</h1>
-            <h2 className='subtitle'>
+            <h1 className='title' data-cy='landing-title'>
+              Welcome to F1 FuelHub
+            </h1>
+            <h2 className='subtitle' data-cy='landing-subtitle'>
               Your ultimate Formula 1 resource center
             </h2>
           </div>
 
           <button
             className='scroll-button'
+            data-cy='scroll-button'
             onClick={handleScrollOnClick}
             style={{ visibility: scrollProgress >= 1 ? 'hidden' : 'visible' }}>
             <div className='circle'>
@@ -181,14 +184,16 @@ function Home() {
         </section>
 
         <div className='main-content' ref={mainRef}>
-          <section className='section most-voted-section'>
+          <section
+            className='section most-voted-section'
+            data-cy='most-voted-section'>
             <h2 className='section-title'>
               <FaTrophy style={{ marginRight: '0.5rem', color: '#FFD700' }} />
               Most Voted Team
             </h2>
 
             <div className='votes-info'>
-              <div className='votes-count'>
+              <div className='votes-count' data-cy='most-voted-count'>
                 {homeData.mostVotedTeam.voteCount}
               </div>
               <div className='votes-label'>Total Votes</div>
@@ -204,7 +209,9 @@ function Home() {
             </div>
           </section>
 
-          <section className='section top-drivers-section'>
+          <section
+            className='section top-drivers-section'
+            data-cy='top-drivers-section'>
             <h2 className='section-title'>
               <FaFlag style={{ marginRight: '0.5rem', color: '#FFD700' }} />
               Top Pole Position Drivers
@@ -244,7 +251,9 @@ function Home() {
             </div>
           </section>
 
-          <section className='section fastest-pitstops-section'>
+          <section
+            className='section fastest-pitstops-section'
+            data-cy='fastest-pitstops-section'>
             <h2 className='section-title'>
               <FaClock style={{ marginRight: '0.5rem', color: '#FFD700' }} />
               Fastest Pit Stops
@@ -298,7 +307,9 @@ function Home() {
             </div>
           </section>
 
-          <section className='section top-speed-section'>
+          <section
+            className='section top-speed-section'
+            data-cy='top-speed-section'>
             <h2 className='section-title'>
               <FaBolt style={{ marginRight: '0.5rem', color: '#FFD700' }} />
               Top Speed Record

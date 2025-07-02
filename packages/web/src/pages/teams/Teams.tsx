@@ -157,7 +157,9 @@ function Teams() {
       </div>
 
       <main className='teams'>
-        <section className='most-voted-team-section'>
+        <section
+          className='most-voted-team-section'
+          data-cy='most-voted-team-section'>
           <h2 className='section-title'>
             <FaTrophy style={{ marginRight: '0.5rem', color: '#FFD700' }} />
             Most Voted Team
@@ -175,7 +177,7 @@ function Teams() {
           </div>
         </section>
 
-        <section className='all-teams-section'>
+        <section className='all-teams-section' data-cy='all-teams-section'>
           <h2 className='section-title'>All Teams</h2>
           <div className='teams-grid'>
             {allTeams.map((team) => (
@@ -184,6 +186,7 @@ function Teams() {
                 className={`team-card ${
                   favoriteTeam === team ? 'favorite' : ''
                 }`}
+                data-cy='team-list-item'
                 onClick={() => handleTeamClick(team)}>
                 <F1TeamCard
                   team={team}

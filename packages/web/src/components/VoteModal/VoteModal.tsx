@@ -38,7 +38,9 @@ export default function VoteModal({
         className={`vote-modal-overlay ${isOpen ? 'open' : ''}`}
         onClick={onCancel}
       />
-      <div className={`vote-modal-container ${isOpen ? 'open' : ''}`}>
+      <div
+        className={`vote-modal-container ${isOpen ? 'open' : ''}`}
+        data-cy='voting-modal'>
         <div className='vote-modal-icon'>
           <FaVoteYea size={32} color='#E10600' />
         </div>
@@ -64,6 +66,7 @@ export default function VoteModal({
               value={email}
               onChange={onEmailChange}
               customErrorMessage={emailError}
+              type='email'
             />
           </div>
         )}
