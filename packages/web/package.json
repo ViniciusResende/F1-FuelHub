@@ -9,7 +9,7 @@
     "lint": "next lint",
     "test": "jest --runInBand",
     "cypress:open": "cypress open --browser chrome",
-    "cypress:run:chrome": "cypress run --browser chrome"
+    "test:e2e": "cypress run --browser chrome"
   },
   "dependencies": {
     "classnames": "^2.5.1",

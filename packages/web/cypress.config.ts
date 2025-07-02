@@ -4,8 +4,11 @@ import { addCucumberPreprocessorPlugin } from '@badeball/cypress-cucumber-prepro
 import createEsbuildPlugin from '@badeball/cypress-cucumber-preprocessor/esbuild';
 
 export default defineConfig({
+  viewportWidth: 1600,
+  viewportHeight: 900,
   e2e: {
     baseUrl: 'http://localhost:3000',
+    fixturesFolder: 'cypress/fixtures',
     specPattern: '**/*.feature',
     excludeSpecPattern: '**/node_modules/**',
     async setupNodeEvents(
