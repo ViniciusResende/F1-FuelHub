@@ -16,7 +16,6 @@ jobs:
     name: End-to-End Tests (Cypress)
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    needs: build
     container:
       image: cypress/browsers:node-22.16.0-chrome-137.0.7151.119-1-ff-139.0.4-edge-137.0.3296.62-1
 
