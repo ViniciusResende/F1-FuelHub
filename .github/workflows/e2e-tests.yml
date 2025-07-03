@@ -48,7 +48,7 @@ jobs:
           PORT: 4000
 
       - name: Wait for Server to be Ready
-        run: wait-on http://localhost:3000
+        run: wait-on http://localhost:3000 --timeout 20000
 
       - name: Run Cypress Tests
         run: yarn test:e2e
