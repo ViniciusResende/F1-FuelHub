@@ -1,0 +1,16 @@
+{
+  "data": {
+    "currentYear": {
+      "year": 2023,
+      "time": 1.82,
+      "driver": "Lando NORRIS",
+      "team": "McLaren"
+    },
+    "overall": {
+      "year": 2019,
+      "time": 1.80,
+      "driver": "Max VERSTAPPEN",
+      "team": "Red Bull Racing"
+    }
+  }
+}

@@ -20,7 +20,7 @@ function Header({ isVisible = true }: HeaderProps) {
 
   return (
     <header className={`header ${isVisible ? 'visible' : ''}`}>
-      <nav className='navigation'>
+      <nav className='navigation' data-cy='navbar'>
         <ul className='navigation-list'>
           {NAVIGATION_ITEMS.map(({ path, label }) => (
             <li key={path} className='navigation-item'>

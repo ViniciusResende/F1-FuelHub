@@ -157,7 +157,6 @@ function InputComponent(props: InputComponentProps) {
         onFocus={onFocusInput}
         onMouseEnter={onMouseEnterInput}
         onMouseLeave={onMouseLeaveInput}
-        type='text'
       />
       {errorMessage && <span className='errorSpan'>{errorMessage}</span>}
       {unitOfMeasurementTag && (

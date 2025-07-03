@@ -1,0 +1,44 @@
+{
+  "data": [
+    {
+      "team": "Red Bull Racing",
+      "votes": 1500
+    },
+    {
+      "team": "McLaren",
+      "votes": 1300
+    },
+    {
+      "team": "Ferrari",
+      "votes": 1200
+    },
+    {
+      "team": "Mercedes",
+      "votes": 1000
+    },
+    {
+      "team": "Aston Martin",
+      "votes": 400
+    },
+    {
+      "team": "Alpine",
+      "votes": 300
+    },
+    {
+      "team": "Kick Sauber",
+      "votes": 250
+    },
+    {
+      "team": "Haas F1 Team",
+      "votes": 200
+    },
+    {
+      "team": "Williams",
+      "votes": 150
+    },
+    {
+      "team": "Racing Bulls",
+      "votes": 125
+    }
+  ]
+}

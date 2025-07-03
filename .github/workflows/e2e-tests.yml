@@ -1,0 +1,67 @@
+name: F1-FuelHub - E2E Tests
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - '*'
+  workflow_dispatch:
+
+jobs:
+  ########################################################
+  ### End-to-End Tests (Cypress) #########################
+  ########################################################
+  e2e-test:
+    name: End-to-End Tests (Cypress)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    # Define MongoDB as a service container
+    services:
+      mongodb:
+        image: mongo:latest
+        ports:
+          - 27017:27017
+        # Health check ensures the DB is ready before steps run
+        options: >-
+          --health-cmd "mongosh --eval 'db.adminCommand(\"ping\")'"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        run: npm install --frozen-lockfile
+
+      - name: Install wait-on
+        run: npm install -g wait-on
+
+      - name: Start Web Server in Background
+        run: npm run dev > server.log 2>&1 &
+        env:
+          MONGODB_URI: mongodb://localhost:27017/f1hub
+          OPENF1_BASE_URL: https://api.openf1.org/v1
+          PORT: 4000
+
+      - name: Wait for Server to be Ready
+        run: wait-on http://localhost:3000 --timeout 200000
+
+      - name: Run Cypress Tests
+        run: npm run test:e2e
+
+      - name: Upload Cypress Screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-screenshots
+          path: packages/web/cypress/screenshots
+
+      - name: Output Server Logs on Failure
+        if: failure()
+        run: |
+          echo "--- Server Logs ---"
+          cat server.log
