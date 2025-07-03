@@ -16,15 +16,23 @@ jobs:
     name: End-to-End Tests (Cypress)
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    container:
-      image: cypress/browsers:node-22.16.0-chrome-137.0.7151.119-1-ff-139.0.4-edge-137.0.3296.62-1
+
+    # Define MongoDB as a service container
+    services:
+      mongodb:
+        image: mongo:latest
+        ports:
+          - 27017:27017
+        # Health check ensures the DB is ready before steps run
+        options: >-
+          --health-cmd "mongosh --eval 'db.adminCommand(\"ping\")'"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-
-      - name: Mark ALL Git Directories as Safe (Alternative)
-        run: git config --global --add safe.directory '*'
 
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
@@ -32,11 +40,12 @@ jobs:
       - name: Install wait-on
         run: yarn global add wait-on
 
-      - name: Setup docker-compose Mongo DB
-        run: yarn dev:db
-
       - name: Start Web Server in Background
         run: yarn dev > server.log 2>&1 &
+        env:
+          MONGODB_URI: mongodb://localhost:27017/f1hub
+          OPENF1_BASE_URL: https://api.openf1.org/v1
+          PORT: 4000
 
       - name: Wait for Server to be Ready
         run: wait-on http://localhost:3000
