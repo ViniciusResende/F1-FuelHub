@@ -1,0 +1,59 @@
+name: F1-FuelHub - E2E Tests
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - '*'
+  workflow_dispatch:
+
+jobs:
+  ########################################################
+  ### End-to-End Tests (Cypress) #########################
+  ########################################################
+  e2e-test:
+    name: End-to-End Tests (Cypress)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    needs: build
+    container:
+      image: cypress/browsers:node-22.16.0-chrome-137.0.7151.119-1-ff-139.0.4-edge-137.0.3296.62-1
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Mark ALL Git Directories as Safe (Alternative)
+        run: git config --global --add safe.directory '*'
+
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Install wait-on
+        run: yarn global add wait-on
+
+      - name: Setup docker-compose Mongo DB
+        run: yarn dev:db
+
+      - name: Start Web Server in Background
+        run: yarn dev > server.log 2>&1 &
+
+      - name: Wait for Server to be Ready
+        run: wait-on http://localhost:3000
+
+      - name: Run Cypress Tests
+        run: yarn test:e2e
+
+      - name: Upload Cypress Screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-screenshots
+          path: packages/web/cypress/screenshots
+
+      - name: Output Server Logs on Failure
+        if: failure()
+        run: |
+          echo "--- Server Logs ---"
+          cat server.log
